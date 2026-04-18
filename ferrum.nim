@@ -14,6 +14,7 @@ import submodules/[
 
 var answer = "placeholder"
 const VERSION = staticRead("version.conf").strip()
+const VERSIONS = staticRead("versions.txt").strip()
 
 let args = commandLineParams()
 
@@ -64,7 +65,12 @@ of "repo", "r":
     discard runcmd(fmt"gh repo clone {answer}")
 
 of "-v", "--version":
-  print fmt"Ferrum v{VERSION}"
+  echo fmt"{BRIGHT}APP VERSION{RESET}"
+  echo fmt"{VERSION}"
+  echo ""
+
+  echo fmt"{BRIGHT}ALL VERSIONS{RESET}"
+  echo fmt"{VERSIONS}"
 
 of "status", "s":
   discard execCmd("git status")

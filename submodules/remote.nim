@@ -11,12 +11,16 @@ proc gitPush*(COMMITMSG: string) =
   print "Pushing to remote [2/2]"
   discard runcmd(fmt"git push origin {BRANCH}")
 
+  success "Pushed to remote"
+
 proc gitPull*() =
   print "Pulling from remote"
   discard runcmd(fmt"git pull origin {BRANCH}")
+  success "Pulled data from remote"
 
 proc gitInit*() =
   print "Initializing git"
   discard runcmd("git init")
   discard runcmd("git branch -m main")
   discard runcmd("git add .")
+  success "Initialized git"
