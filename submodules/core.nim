@@ -20,9 +20,16 @@ proc success*(SCSTEXT: string) =
   echo fmt"{GREEN}[✓]{RESET} {SCSTEXT}"
 
 proc runcmd*(COMMAND: string): string =
-  let (output, exitcode) = execCmdEx(COMMAND)
+  let SCOMMAND = COMMAND.strip()
+  let (output, exitcode) = execCmdEx(SCOMMAND)
 
   if exitcode != 0:
-    error fmt"Command '{COMMAND}' failed".unindent()
+    error fmt"Command '{SCOMMAND}' failed"
   else:
     return output
+
+proc read*(QUESTION: string): string =
+  stdout.write fmt"{CYAN}[?]{RESET} {QUESTION}: "
+  let readOut = stdin.readline()
+
+  return readOut
