@@ -1,5 +1,11 @@
 import colors
-import std/[strformat]
+import std/[
+  strformat,
+  strutils
+]
+
+const VERSION = staticRead("../version.conf").strip()
+const VERSIONS = staticRead("../versions.txt").strip()
 
 proc showHelp*() =
   echo fmt"{BRIGHT}USAGE{RESET}"
@@ -28,3 +34,26 @@ proc showHelp*() =
   echo "  init | i           Init shortcut"
   echo "  status | s         Status shortcut"
   echo "  --version | -v     Version shortcut"
+
+proc showHelpN*() =
+  echo fmt"{BRIGHT}USAGE{RESET}"
+  echo "  nova <command> [args]"
+  echo ""
+    
+  echo fmt"{BRIGHT}COMMANDS{RESET}"
+  echo "  login              Use GitHub CLI to login"
+  echo "  sync               Sync repository with GitHub ClI"
+  echo "  current-branch     Get current-branch name"
+  echo "  help               Shos this information"
+  echo fmt"{BRIGHT}SHORTCUTS{RESET}"
+  echo "  login | l          Login shortcut"
+  echo "  sync | s           Sync shortcut"
+  echo "  cb                 Current-branch shortcut"
+
+proc showVersion*() =
+  echo fmt"{BRIGHT}APP VERSION{RESET}"
+  echo fmt"  {VERSION}"
+  echo ""
+
+  echo fmt"{BRIGHT}ALL VERSIONS{RESET}"
+  echo fmt"  {VERSIONS}"  

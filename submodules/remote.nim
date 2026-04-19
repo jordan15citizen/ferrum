@@ -1,7 +1,10 @@
 import core
-import std/[strformat]
+import std/[
+  strformat,
+  strutils
+]
 
-let BRANCH = runcmd("git branch --show-current")
+let BRANCH* = runcmd("git branch --show-current").strip()
 
 proc gitPush*(COMMITMSG: string) =
   print "Committing changes [1/2]"
